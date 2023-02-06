@@ -1,0 +1,176 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+/* nice background animation found from https://codepen.io/P1N2O/pen/pyBNzX */
+
+@keyframes bg-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes delay-pointer-events {
+  0%,
+  99% {
+    pointer-events: none;
+  }
+
+  100% {
+    pointer-events: auto;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Poppins, sans-serif;
+}
+
+/* could've put this on the #content, but iOS doesn't like stretching elements in landscape move (bc of the notch), so this is what I did to counteract that */
+body {
+  background: #22202e;
+}
+
+#content {
+  min-height: 100vh;
+}
+
+p,
+h1,
+h2,
+h3 {
+  color: #f7efe1;
+}
+
+#welcome {
+  width: 100%;
+  height: 50vh;
+  padding: 10vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  background: linear-gradient(-45deg, #d53503, #9c0841, #005473, #0c8064);
+  background-size: 400% 400%;
+  animation: bg-gradient 30s ease-in-out infinite;
+}
+
+#welcome h1 {
+  font-size: 7rem;
+}
+
+#welcome h2 {
+  text-align: center;
+  font-size: 2rem;
+}
+
+#navigation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#navigation h3 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+#cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: calc(100% - 4rem);
+}
+
+.card {
+  position: relative;
+  /* flex: 1; */
+  flex: 1 0 320px;
+  margin-inline: 2rem;
+  margin-bottom: 2rem;
+  height: 35vh;
+  filter: drop-shadow(10px 10px 0 #1d1b27);
+  transition: transform 300ms ease-in-out, filter 300ms ease-in-out;
+}
+
+.card:hover {
+  cursor: pointer;
+  filter: drop-shadow(25px 25px 0 #1d1b27);
+  transform: scale(1.05);
+}
+
+.card > * {
+  position: absolute;
+  padding: 1rem;
+  box-sizing: border-box;
+  border-radius: 20px;
+  transition: filter 300ms ease-in-out;
+}
+
+.card .main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #210f1d;
+  width: 100%;
+  height: 100%;
+}
+
+.card .sub {
+  filter: opacity(0);
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+}
+
+.card p {
+  font-size: 1.2rem;
+}
+
+.card a {
+  font-size: 1.2rem;
+  color: lightblue;
+}
+
+.card .main > h1 {
+  text-align: center;
+  font-size: 3rem;
+  transition: filter 300ms ease-in-out;
+}
+
+.card:hover .main {
+  filter: blur(5px);
+}
+
+.card:hover .main > h1 {
+  filter: brightness(0.3);
+}
+
+.card:hover .sub {
+  animation: delay-pointer-events 1ms linear;
+  animation-fill-mode: forwards;
+  filter: opacity(1);
+}
+
+@media screen and (max-width: 700px) {
+  #welcome h2 {
+    font-size: 1.5rem;
+  }
+
+  .card {
+    flex-basis: 220px;
+    height: 20rem;
+  }
+
+  .card .main > h1 {
+    font-size: 2rem;
+  }
+}
