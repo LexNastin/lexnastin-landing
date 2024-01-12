@@ -59,7 +59,7 @@ h3 {
 
   background: linear-gradient(-45deg, #d53503, #9c0841, #005473, #0c8064);
   background-size: 400% 400%;
-  animation: bg-gradient 30s ease-in-out infinite;
+  animation: bg-gradient 20s ease-in-out infinite;
 }
 
 #welcome h1 {
